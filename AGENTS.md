@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Product structure
+- Keep route-level screens thin and place shared broadcast workspace UI and Supabase data operations in reusable `src/components` and `src/lib` modules, so future media transport can replace placeholders without rewriting account and session flows.
