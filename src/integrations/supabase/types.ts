@@ -28,7 +28,7 @@ export type Database = {
           description?: string
           id?: string
           name: string
-          owner_id: string
+          owner_id?: string
           updated_at?: string
         }
         Update: {
@@ -39,7 +39,15 @@ export type Database = {
           owner_id?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "production_sessions_owner_profile_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -82,7 +90,7 @@ export type Database = {
           duration_seconds?: number | null
           id?: string
           metadata?: Json
-          owner_id: string
+          owner_id?: string
           session_id?: string | null
           status?: string
           storage_path?: string | null
@@ -100,6 +108,13 @@ export type Database = {
           title?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "recordings_owner_profile_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "recordings_session_id_fkey"
             columns: ["session_id"]
